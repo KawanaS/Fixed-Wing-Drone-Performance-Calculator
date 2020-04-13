@@ -1,0 +1,444 @@
+<CustLabel@Label>:
+    color:0,0,0, 1
+
+<CustButton@Button>:
+    font_size:26
+    background_normal:''
+    background_color:(0,0,0, 0)
+    border_radius:[18]
+    back_color:(1,0,1,1)
+    canvas.before:
+        Color:
+            rgba:self.back_color
+        RoundedRectangle:
+            size:self.size
+            pos:self.pos
+            radius:self.border_radius
+
+<CustomWidgetLayout>:
+    id:calculator
+    total_weight:total_weight
+    current:current
+    lift_coef:Cl
+    drag_coef:Cd
+    lift_to_drag:lift_to_drag
+    lift_force:lift
+    drag_force:drag
+    stall_speed:stall
+    max_endurance_speed:max_end
+    max_range_speed:max_range
+    flight_time:flight_time
+    flight_range:flight_range
+
+    FloatLayout:
+        orientation: 'horizontal'
+        canvas:
+            Rectangle:
+                source: 'wuren.jpg'
+                size: 900,500
+                pos: 0,142
+    CustLabel:
+        font_size:30
+        color:0,200,180, 1
+        text:'FIXED WING DRONE PERFORMANCE CALCULATOR'
+        pos: 380, 500
+    CustLabel:
+        font_size:15
+        color:0,200,180, 1
+        text:'Designed by Starlin Kawana 2020'
+        pos: 300, 470
+        back_color: (1, 0, 0, 1)
+        CustLabel:
+            text:'WEIGHT'
+            pos: 20, 400
+        CustLabel:
+            text:'Airframe Weight'
+            pos: 6, 380
+        CustLabel:
+            text:'Payload Weight'
+            pos: 5, 360
+        CustLabel:
+            text:'Battery Weight'
+            pos: 1, 340
+        CustLabel:
+            text:'Total Weight'
+            pos: -5, 320
+        TextInput:
+            id:airframe_weight
+            input_type : 'number'
+            pos: 120, 420
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'kg'
+            pos: 180, 380
+        TextInput:
+            id:payload
+            input_type : 'number'
+            pos: 120, 400
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'kg'
+            pos: 180, 360
+        TextInput:
+            id:battery_weight
+            input_type : 'number'
+            pos: 120, 380
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'kg'
+            pos: 180, 340
+        TextInput:
+            id:total_weight
+            pos: 120, 360
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'kg'
+            pos: 180, 320
+
+        CustLabel:
+            text:'FLIGHT CONDITION'
+            pos: 320, 400
+        CustLabel:
+            text:'Speed'
+            pos: 260, 380
+        CustLabel:
+            text:'Air Density'
+            pos: 274, 360
+        CustLabel:
+            text:'Zero Lift Drag'
+            pos: 284, 340
+        CustLabel:
+            text:'Oswald Efficiency'
+            pos: 296, 320
+        TextInput:
+            id:speed
+            input_type:'number'
+            pos: 420, 420
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'m/s'
+            pos: 490, 380
+        TextInput:
+            id:density
+            input_type:'number'
+            pos: 420, 400
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'kg/m^3'
+            pos: 500, 360
+        TextInput:
+            id:Cdo
+            input_type:'number'
+            pos: 420, 380
+            height:25
+            font_size:10
+            multiline:False
+        TextInput:
+            id:e
+            input_type:'number'
+            pos: 420, 360
+            height:25
+            font_size:10
+            multiline:False
+
+        CustLabel:
+            text:'MAIN WING'
+            pos: 660, 400
+        CustLabel:
+            text:'Wing Area'
+            pos: 580, 380
+        CustLabel:
+            text:'Aspect Ratio'
+            pos: 590, 360
+        CustLabel:
+            text:'Target Lift Coefficient'
+            pos: 620, 340
+        TextInput:
+            id:S
+            input_type:'number'
+            pos: 760, 420
+            height:25
+            font_size:10
+            multiline:False
+        TextInput:
+            id:AR
+            input_type:'number'
+            pos: 760, 400
+            height:25
+            font_size:10
+            multiline:False
+        TextInput:
+            id:Clmax
+            input_type:'number'
+            pos: 760, 380
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'m^2'
+            pos: 830, 380
+
+        CustLabel:
+            text:'POWER'
+            pos: 20, 280
+        CustLabel:
+            text:'Power Required'
+            pos: 7, 260
+        CustLabel:
+            text:'Battery Capacity'
+            pos: 8, 240
+        CustLabel:
+            text:'Energy Density'
+            pos: 3, 220
+        CustLabel:
+            text:'Cell Voltage'
+            pos:-5, 200
+        CustLabel:
+            text:'Number Of Cells'
+            pos:10, 180
+        CustLabel:
+            text:'No. Of Batteries'
+            pos:10, 160
+        TextInput:
+            id:power_req
+            input_type:'number'
+            pos: 120, 300
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'W'
+            pos: 180, 260
+        TextInput:
+            id:battery_capacity
+            input:'number'
+            pos: 120, 280
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'mAh'
+            pos: 186, 240
+        TextInput:
+            id:energy_density
+            input_type:'number'
+            pos: 120, 260
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'W-h/kg'
+            pos: 194, 220
+        TextInput:
+            id:cell_voltage
+            input_type:'number'
+            pos: 120, 240
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'V'
+            pos: 182, 200
+        TextInput:
+            id:No_cells
+            input_type:'number'
+            pos: 120, 220
+            height:25
+            font_size:10
+            multiline:False
+        TextInput:
+            id:No_batteries
+            input_type:'number'
+            pos: 120, 200
+            height:25
+            font_size:10
+            multiline:False
+
+        CustLabel:
+            text:'Total Voltage'
+            pos: 280, 260
+        CustLabel:
+            text:'Battery Capacity Used'
+            pos: 310, 240
+        CustLabel:
+            text:'Propulsive Efficiency'
+            pos: 306, 220
+        CustLabel:
+            text:'Current Draw'
+            pos: 280, 200
+        TextInput:
+            id:total_voltage
+            input_type:'number'
+            pos: 434, 300
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'V'
+            pos: 490, 260
+        TextInput:
+            id:battery_capacity_used
+            input_type:'number'
+            pos: 434, 280
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'%'
+            pos: 490, 240
+        TextInput:
+            id:efficiency
+            input_type:'number'
+            pos: 434, 260
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'%'
+            pos: 490, 220
+        TextInput:
+            id:current
+            pos: 434, 240
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'A'
+            pos: 490, 200
+
+        CustLabel:
+            text:'Lift Coeficient'
+            pos: 5, 70
+        CustLabel:
+            text:'Drag Coeficient'
+            pos: 8, 50
+        CustLabel:
+            text:'Lift/Drag'
+            pos: -12, 25
+        CustLabel:
+            text:'Lift Force'
+            pos: -10, 1
+        CustLabel:
+            text:'Drag Force'
+            pos: -6, -20
+        TextInput:
+            id:Cl
+            input_type:'number'
+            pos: 120, 115
+            height:25
+            font_size:10
+            multiline:False
+        TextInput:
+            id:Cd
+            input_type:'number'
+            pos: 120, 90
+            height:25
+            font_size:10
+            multiline:False
+        TextInput:
+            id:lift_to_drag
+            input_type:'number'
+            pos: 120, 65
+            height:25
+            font_size:10
+            multiline:False
+        TextInput:
+            id:lift
+            pos: 120, 40
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'N'
+            pos: 180, 5
+        TextInput:
+            id:drag
+            pos: 120, 15
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'N'
+            pos: 180, -20
+
+        CustLabel:
+            text:'Stall Speed'
+            pos: 275, 70
+        CustLabel:
+            text:'Maximum Endurance Speed'
+            pos: 330, 50
+        CustLabel:
+            text:'Maximum Range Speed'
+            pos: 316, 30
+        TextInput:
+            id:stall
+            pos: 480, 115
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'m/s'
+            pos: 545, 75
+        TextInput:
+            id:max_end
+            pos: 480, 90
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'m/s'
+            pos: 545, 50
+        TextInput:
+            id:max_range
+            pos: 480, 65
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'m/s'
+            pos: 545, 25
+
+        CustLabel:
+            text:'Flight Time'
+            pos: 650, 70
+        CustLabel:
+            text:'Flight Range'
+            pos: 652, 50
+        TextInput:
+            id:flight_time
+            pos: 755, 115
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'min'
+            pos: 820, 75
+        TextInput:
+            id:flight_range
+            pos: 755, 90
+            height:25
+            font_size:10
+            multiline:False
+        CustLabel:
+            text:'km'
+            pos: 820, 50
+        CustButton:
+            id:'calculate'
+            back_color:(.15,.45,.75,1)
+            text:'Calculate'
+            pos: 300, 140
+            size: 120, 50
+            on_press:calculator.calculate(airframe_weight.text,payload.text,battery_weight.text,total_voltage.text,efficiency.text,speed.text,lift_to_drag.text,S.text,Cdo.text,e.text,AR.text,density.text,Clmax.text,power_req.text,battery_capacity.text,energy_density.text,No_cells.text,No_batteries.text,battery_capacity_used.text,cell_voltage.text)
+
